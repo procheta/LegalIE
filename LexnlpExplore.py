@@ -49,10 +49,10 @@ for file in os.listdir(directory):
 						with open(dateFile,"a") as f3:
 							f3.write(filename)
 							f3.write("\t")
-                                                        f3.write(sen)
-                                                        f3.write("\tdate\t")
-                                                        f3.write(str(dates))
-                                                        f3.write("\n")
+							f3.write(sen)
+							f3.write("\tdate\t")
+							f3.write(str(dates))
+							f3.write("\n")
 						f3.close()
 						
 					defs=list(lexnlp.extract.en.definitions.get_definitions(sen))
@@ -60,10 +60,10 @@ for file in os.listdir(directory):
 						with open(defFile,"a") as f4:
 							f4.write(filename)
 							f4.write("\t")
-                                                        f4.write(sen)
-                                                        f4.write("\tdefinition\t")
-                                                        f4.write(str(defs))
-                                                        f4.write("\n")
+							f4.write(sen)
+							f4.write("\tdefinition\t")
+							f4.write(str(defs))
+							f4.write("\n")
 						f4.close()
 					tokens=lexnlp.nlp.en.tokens.get_nouns(sen)
 				
