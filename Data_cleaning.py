@@ -3,7 +3,7 @@ import nltk
 import re
 from nltk.stem import PorterStemmer
 from nltk.tokenize import word_tokenize
-from nltk.corpus import stopwords
+from nltk.tokenize import sent_tokenize
 from nltk.corpus import stopwords
 
 
@@ -29,13 +29,15 @@ files=os.listdir(dir)
 
 def tokenize(train_texts):
     filtered_tokens = []
+    train_texts=train_texts.replace("#","")
+    train_texts=train_texts.replace("\n"," ")
     #tokens = [word for sent in nltk.sent_tokenize(train_texts) for word in nltk.word_tokenize(sent)]
     tokens=train_texts.split(" ")
     #print(len(tokens))
     filtered_text=""
     for token in tokens:
         #if re.search('[a-zA-Z]',token):
-        if (('http' not in token) and ('@' not in token) and ('<.*?>' not in token) and (not token in stop_words) and (len(token) <=8) and token.isalnum()==True):
+        if (('http' not in token) and ('@' not in token) and ('<*?>' not in token) and (not token in stop_words) and (len(token) <=16)):
             filtered_text=filtered_text+" "+token
                 #print("Token",token)
     filtered_text=filtered_text.replace("|"," ")
@@ -62,13 +64,13 @@ for f in files:
 					if line!="\n":
 						line=line.lower()
 						st=st+line
-		l1=st.split(".")
+		
+		l1=sent_tokenize(st)
 		for l in l1:
 			l=tokenize(l)
-			if l=="":	
+			l=l+"\n"
+			if l=="\n":	
 				continue
-			else:
-				l=l+"."
 			l=l.replace("*","")
 			f1.write(l)
 	f1.close()
